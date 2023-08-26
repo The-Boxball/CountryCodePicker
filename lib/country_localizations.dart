@@ -26,6 +26,9 @@ class CountryLocalizations {
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
     _localizedStrings = jsonMap.map((key, value) {
+      if (value is List && value.isNotEmpty) {
+        return MapEntry(key, value[0].toString());
+      }
       return MapEntry(key, value.toString());
     });
 
